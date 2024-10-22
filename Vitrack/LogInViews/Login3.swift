@@ -48,11 +48,11 @@ struct Login3: View {
                     
                     Image("Sliedbar")
                         .frame(width: 250, height: 8)
-                        .padding(.top,400)
+                        .padding(.top,350)
                     NavigationLink(destination: Login4(name: inputText)){
                         Image("Arrow")
                             .frame(width: 250, height: 24)
-                            .padding(.top,400)
+                            .padding(.top,350)
                     }
                 }
                 

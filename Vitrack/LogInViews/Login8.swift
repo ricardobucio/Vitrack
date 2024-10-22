@@ -14,7 +14,7 @@ struct Login8: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Fondo con gradiente
+              
                 Rectangle()
                     .foregroundColor(.clear)
                     .frame(width: 973, height: 973)
@@ -31,7 +31,7 @@ struct Login8: View {
                     )
                     .cornerRadius(973)
                 
-                // Texto animado
+           
                 Text("Cargando")
                     .font(
                         Font.custom("Arial", size: 30)
@@ -47,14 +47,14 @@ struct Login8: View {
                         }
                     }
                 
-                // Navegación oculta a Home1
-                NavigationLink(destination: Home1(), isActive: $navigateToHome) {
-                    EmptyView()
-                }
+ 
+            }
+            .navigationDestination(isPresented: $navigateToHome) {
+                Home1()
             }
             .edgesIgnoringSafeArea(.all)
         }
-        .navigationBarBackButtonHidden(true) // Ocultar el botón de retroceso
+        .navigationBarBackButtonHidden(true)
     }
 }
 

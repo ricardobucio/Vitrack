@@ -1,36 +1,27 @@
-//
-//  Login6.swift
-//  Vitrack
-//
-//  Created by Ricardo Bucio on 10/16/24.
-//
-
 import SwiftUI
 
 struct Login6: View {
     @State private var selectedDate = Date() // Variable para la fecha seleccionada
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
+    @State private var selectedCycle = 30
 
     var body: some View {
         VStack(spacing: 24) {
             // Título principal
-            Text("Ingresa el primer dia  del ultimo periodo para calcular la fecha")
-                .font(
-                    Font.custom("Arial", size: 24)
-                        .weight(.semibold)
-                )
+            Text("Ingresa el día de tu ultimo periodo para hacer los calculos necesarios")
+                .font(Font.custom("Arial", size: 24).weight(.semibold))
                 .foregroundColor(.black)
-                .frame(width: 350, alignment: .leading)
-            
+                .frame(width: 350, height: 90, alignment: .leading)
+                .padding(.top, 30)
+                .padding(.leading, 50)
+            Spacer()
             // Subtítulo
             Text("¿Cuando fue tu última menstruación?")
-                .font(
-                    Font.custom("Arial", size: 20)
-                        .weight(.semibold)
-                )
+                .font(Font.custom("Arial", size: 20).weight(.semibold))
                 .foregroundColor(.black)
-                .frame(width: 250, alignment: .leading)
-            
+                .frame(width: 350, alignment: .leading)
+                .padding(.leading, 50)
+                .padding(.bottom, 20)
             // Botón para seleccionar fecha
             VStack(alignment: .leading, spacing: 4) {
                 Text("Fecha")
@@ -40,75 +31,77 @@ struct Login6: View {
                 Button(action: {
                     showDatePicker.toggle() // Mostrar DatePicker
                 }) {
-                    Text("\(selectedDate, formatter: dateFormatter)")
+                    Text("   \(selectedDate, formatter: dateFormatter)")
                         .font(Font.custom("Arial", size: 16))
                         .foregroundColor(.gray)
-                        .frame(width: 280, height: 40)
+                        .frame(width: 300, height: 50, alignment: .leading)
+                    
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.blue, lineWidth: 1)
+                                .stroke(Color.green, lineWidth: 1.5)
                                 .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.95))
                         )
                         .padding(5)
+                        
                 }
             }
             .padding(.horizontal, 16)
-            
-            // DatePicker oculto
-            if showDatePicker {
-                DatePicker(
-                    "",
-                    selection: $selectedDate,
-                    displayedComponents: .date
-                )
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .padding(.horizontal, 16)
+            HStack() {
+                Rectangle()
+                    .frame(width: 300, height: 1)
+                    .padding(.top, 30)
+                    .padding(.bottom, 30)
             }
             
             // Sección de "Cuál es el periodo de tu ciclo?"
             VStack(spacing: 8) {
-                Text("¿Cuál es el periodo de tu ciclo?")
-                    .font(
-                        Font.custom("Arial", size: 20)
-                            .weight(.semibold)
-                    )
-                    .foregroundColor(.black)
-                    .frame(width: 250, alignment: .leading)
-                
-                HStack(spacing: 16) {
+                HStack {
+                    Text("¿Cuál es el período de tu ciclo?")
+                        .font(Font.custom("Arial", size: 24).weight(.semibold))
+                        .foregroundColor(.black)
+                        .frame(width: 350, alignment: .leading)
+                        .padding(.leading, 50)
+                        .padding(.bottom)
+                        //.padding(.top, 30)
+                        .lineLimit(3)
+                }
+               
+                HStack {
                     ForEach([30, 29, 28], id: \.self) { day in
-                        Text("\(day)")
-                            .font(Font.custom("Arial", size: 16))
-                            .foregroundColor(.gray)
-                            .frame(width: 50, height: 50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color.blue, lineWidth: 1)
-                                    .foregroundColor(.white)
-                            )
+                        Button(action: {
+                            selectedCycle = day
+                        }) {
+                            Text("\(day)")
+                                .padding()
+                                .frame(width: 60, height: 60)
+                                .background(selectedCycle == day ? Color.blue.opacity(0.2) : Color.clear)
+                                .cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
+                                .padding(5)
+                        }
                     }
                     
                     Button(action: {
-                        // Acción para agregar días adicionales
+                        // Acción para agregar un nuevo ciclo
                     }) {
                         Image(systemName: "plus")
-                            .foregroundColor(.blue)
-                            .frame(width: 50, height: 50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color.blue, lineWidth: 1)
-                                    .foregroundColor(.white)
-                            )
+                            .padding()
+                            .frame(width: 60, height: 60)
+                            .background(Color.blue.opacity(0.2))
+                            .cornerRadius(50)
+                            .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.blue, lineWidth: 1))
+                            .padding(5)
                     }
+                    
                 }
             }
-            
+            .padding(.bottom, 20)
             // Sección inferior con barra de progreso y navegación
             HStack(spacing: 50) {
                 Image("Sliedbar")
                     .resizable()
                     .frame(width: 50, height: 8)
-                    .padding(.trailing,100)
+                    .padding(.trailing, 100)
                 
                 HStack(spacing: 16) {
                     NavigationLink(destination: Login5()) {
@@ -124,12 +117,13 @@ struct Login6: View {
                     }
                 }
             }
-            .padding(.top, 300)
-            
-            Spacer()
         }
+        .padding(.bottom, 30)
         .padding(.top, 40)
         .padding(.horizontal, 16)
+        .sheet(isPresented: $showDatePicker) {
+            DatePickerView(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
+        }
     }
     
     // Formateador para la fecha seleccionada
@@ -141,7 +135,46 @@ struct Login6: View {
     }
 }
 
+struct DatePickerView: View {
+    @Binding var selectedDate: Date
+    @Binding var showDatePicker: Bool
+
+    var body: some View {
+        ZStack {
+            // Fondo oscuro semitransparente
+            Color.black.opacity(0.3)
+                .edgesIgnoringSafeArea(.all) // Ignorar los márgenes seguros
+
+            VStack {
+                Text("Selecciona una fecha")
+                    .font(.headline)
+                    .padding()
+
+                DatePicker("Fecha", selection: $selectedDate, displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .padding()
+
+                Button("Aceptar") {
+                    showDatePicker = false // Cerrar el sheet
+                }
+                .padding()
+            }
+            .padding()
+            .background(
+                Color.white // Fondo blanco
+                    .cornerRadius(20) // Bordes redondeados
+                    .shadow(color: Color.black.opacity(0.2), radius: 15, x: 0, y: 5) // Sombra
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity) // Ocupar toda la pantalla
+            .padding() // Opcional: añade un poco de padding
+        }
+        .navigationBarItems(trailing: Button("Cerrar") {
+            showDatePicker = false // Cerrar el sheet
+        })
+    }
+}
+
+
 #Preview {
     Login6()
 }
-
