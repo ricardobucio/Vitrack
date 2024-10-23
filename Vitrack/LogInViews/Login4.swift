@@ -4,8 +4,8 @@ import SwiftUI
 struct Login4: View {
     @State private var selectedDate = Date() // Estado para almacenar la fecha seleccionada
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
-    var name: String // Propiedad para almacenar el nombre pasado
-
+    var name: String // Propiedad para almacenar el nombre pasado.
+   
     var body: some View {
         NavigationStack {
             VStack {
@@ -59,20 +59,51 @@ struct Login4: View {
                     )
             }
 
-            HStack {
-                Image("Sliedbar")
-                    .frame(width: 24, height: 24)
-                    .padding(.top, 340)
-                    .padding(.trailing, 90)
-                
-                NavigationLink(destination: Login5()) {
-                    Image("Arrow")
-                        .frame(width: 24, height: 24)
-                        .padding(.top, 340)
-                        .padding(.leading, 90)
+            Spacer()
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack{
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 6, height: 6)
+                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                            .cornerRadius(4)
+                            .padding(.leading, 20)
+                           
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 6, height: 6)
+                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                            .cornerRadius(4)
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 20, height: 6)
+                            .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                            .cornerRadius(4)
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 6, height: 6)
+                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                            .cornerRadius(4)
+                           
+                        }
+                       
+                    }
+                    
+                    ToolbarItem(placement: .bottomBar) {
+                        NavigationLink(destination: Login5()){
+                            Image("Arrow")
+                                .padding(.trailing, 20)
+                                
+                            
+                        }
+                        
+                    }
+
+                   
                 }
-            }
         }
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showDatePicker) {
             DatePickerView2(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
         }

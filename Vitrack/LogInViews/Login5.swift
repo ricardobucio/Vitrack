@@ -56,6 +56,7 @@ struct Login5: View {
             }
             .padding(.horizontal, 16)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

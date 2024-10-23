@@ -1,47 +1,56 @@
-//
-//  Login7.swift
-//  Vitrack
-//
-//  Created by Ricardo Bucio on 10/16/24.
-//
-
 import SwiftUI
 
 struct Login7: View {
+    @State private var floatUpDown = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
-                // Imágenes de fondo (bolitas y estrellas)
-                Image("Ellipse 707")
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .position(x: 300, y: 150) // Ajusta la posición para el diseño deseado
                 
-                Image("Ellipse 711")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .position(x: 240, y: 170)
+                Rectangle()
+                    .fill(Color(red: 0.96, green: 0.47, blue: 0.59))
+                    .opacity(0.3)
+                    .cornerRadius(350)
+                    .frame(width: 250, height: 250)
+                    .position(x: 350, y: 200)
+                    .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
                 
-                Image("Ellipse 714")
+                Image("Star 2")
                     .resizable()
-                    .frame(width: 150, height: 150)
-                    .position(x: 60, y: 550)
+                    .frame(width: 60, height: 60)
+                    .position(x: 230, y: 160)
+                    .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
+
+                Rectangle()
+                    .fill(Color(red: 0.01, green: 0.70, blue: 0.86))
+                    .opacity(0.3)
+                    .cornerRadius(350)
+                    .frame(width: 250, height: 250)
+                    .position(x: 20, y: 550)
+                    .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 2.5).repeatForever(autoreverses: true), value: floatUpDown)
                 
-                Image("Star 1")
+                Image("Star 3")
                     .resizable()
-                    .frame(width: 50, height: 50)
-                    .position(x: 100, y: 520)
+                    .frame(width: 70, height: 70)
+                    .position(x: 130, y: 610)
+                    .offset(y: floatUpDown ? -7 : 7) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 2.5).repeatForever(autoreverses: true), value: floatUpDown)
                 
-                Image("Ellipse 711")
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .position(x: 250, y: 750)
+                Rectangle()
+                    .fill(Color(red: 0.01, green: 0.71, blue: 0.02))
+                    .opacity(0.3)
+                    .cornerRadius(350)
+                    .frame(width: 350, height: 350)
+                    .position(x: 350, y: 800)
+                    .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 3).repeatForever(autoreverses: true), value: floatUpDown)
 
                 VStack {
-                    Spacer() // Añadir espacio superior para centrar el texto
-                    
-                    // Texto principal centrado
-                    Text("Llevas 7 semanas de embarazo")
+                    Spacer()
+                    Text("Llevas 4 semanas de embarazo")
                         .font(
                             Font.custom("Arial", size: 21)
                                 .weight(.semibold)
@@ -50,35 +59,32 @@ struct Login7: View {
                         .foregroundColor(.black)
                         .frame(width: 250)
                     
-                    Spacer() // Añadir espacio inferior para centrar el texto
+                    Spacer()
                     
-                    // Sección inferior con barra de progreso y flechas
-                    HStack(spacing: 50) {
-                        Image("Sliedbar")
-                            .resizable()
-                            .frame(width: 50, height: 8)
-                            .padding(.trailing, 100)
-                        
-                        HStack(spacing: 16) {
-                            NavigationLink(destination: Login6()) {
-                                Image(systemName: "arrow.left")
-                                    .foregroundColor(.black)
-                                    .frame(width: 24, height: 24)
-                            }
-                            
-                            NavigationLink(destination: Login8()) {
-                                Image(systemName: "arrow.right")
-                                    .foregroundColor(.black)
-                                    .frame(width: 24, height: 24)
+                        .toolbar {
+                            ToolbarItem(placement: .bottomBar) {
+                                HStack{
+                                    Spacer()
+                                    NavigationLink(destination: Login6()){
+                                        Image("Arrow")
+                                            .rotationEffect(.degrees(180))
+                                    }
+                                    NavigationLink(destination: Login8()){
+                                        Image("Arrow")
+                                            .padding(.trailing, 20)
+                                    }
+                                }
                             }
                         }
-                    }
-                    .padding(.bottom, 40) // Ajusta el espaciado inferior si es necesario
                 }
-                .frame(maxHeight: .infinity) // Asegurar que el VStack ocupe todo el espacio para centrar el texto
+                .frame(maxHeight: .infinity)
             }
-            .edgesIgnoringSafeArea(.all) // Asegurar que las imágenes se extiendan a los bordes
+            .onAppear {
+                floatUpDown = true
+            }
+            .edgesIgnoringSafeArea(.all)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

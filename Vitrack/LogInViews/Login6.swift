@@ -6,121 +6,154 @@ struct Login6: View {
     @State private var selectedCycle = 30
 
     var body: some View {
-        VStack(spacing: 24) {
-            // Título principal
-            Text("Ingresa el día de tu ultimo periodo para hacer los calculos necesarios")
-                .font(Font.custom("Arial", size: 24).weight(.semibold))
-                .foregroundColor(.black)
-                .frame(width: 350, height: 90, alignment: .leading)
-                .padding(.top, 30)
-                .padding(.leading, 50)
-            Spacer()
-            // Subtítulo
-            Text("¿Cuando fue tu última menstruación?")
-                .font(Font.custom("Arial", size: 20).weight(.semibold))
-                .foregroundColor(.black)
-                .frame(width: 350, alignment: .leading)
-                .padding(.leading, 50)
-                .padding(.bottom, 20)
-            // Botón para seleccionar fecha
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Fecha")
-                    .font(Font.custom("Arial", size: 14))
-                    .foregroundColor(.gray)
-                
-                Button(action: {
-                    showDatePicker.toggle() // Mostrar DatePicker
-                }) {
-                    Text("   \(selectedDate, formatter: dateFormatter)")
-                        .font(Font.custom("Arial", size: 16))
+        NavigationStack{
+            VStack(spacing: 24) {
+                // Título principal
+                Text("Ingresa el día de tu ultimo periodo para hacer los calculos necesarios")
+                    .font(Font.custom("Arial", size: 24).weight(.semibold))
+                    .foregroundColor(.black)
+                    .frame(width: 350, height: 90, alignment: .leading)
+                    .padding(.top, 90)
+                    .padding(.leading, 50)
+                Spacer()
+                // Subtítulo
+                Text("¿Cuando fue tu última menstruación?")
+                    .font(Font.custom("Arial", size: 20).weight(.semibold))
+                    .foregroundColor(.black)
+                    .frame(width: 350, alignment: .leading)
+                    .padding(.leading, 50)
+                    .padding(.bottom, 20)
+                // Botón para seleccionar fecha
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Fecha")
+                        .font(Font.custom("Arial", size: 14))
                         .foregroundColor(.gray)
-                        .frame(width: 300, height: 50, alignment: .leading)
-                    
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.green, lineWidth: 1.5)
-                                .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.95))
-                        )
-                        .padding(5)
+                        .padding(.leading, 5)
+                    Button(action: {
+                        showDatePicker.toggle() // Mostrar DatePicker
+                    }) {
+                        Text("   \(selectedDate, formatter: dateFormatter)")
+                            .font(Font.custom("Arial", size: 16))
+                            .foregroundColor(.gray)
+                            .frame(width: 300, height: 50, alignment: .leading)
                         
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.green, lineWidth: 1.5)
+                                    .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.95))
+                            )
+                            .padding(5)
+                            
+                    }
                 }
-            }
-            .padding(.horizontal, 16)
-            HStack() {
-                Rectangle()
-                    .frame(width: 300, height: 1)
-                    .padding(.top, 30)
-                    .padding(.bottom, 30)
-            }
-            
-            // Sección de "Cuál es el periodo de tu ciclo?"
-            VStack(spacing: 8) {
-                HStack {
-                    Text("¿Cuál es el período de tu ciclo?")
-                        .font(Font.custom("Arial", size: 24).weight(.semibold))
-                        .foregroundColor(.black)
-                        .frame(width: 350, alignment: .leading)
-                        .padding(.leading, 50)
-                        .padding(.bottom)
-                        //.padding(.top, 30)
-                        .lineLimit(3)
+                .padding(.horizontal, 16)
+                HStack() {
+                    Rectangle()
+                        .frame(width: 300, height: 1)
+                        .padding(.top, 30)
+                        .padding(.bottom, 30)
                 }
-               
-                HStack {
-                    ForEach([30, 29, 28], id: \.self) { day in
+                
+                // Sección de "Cuál es el periodo de tu ciclo?"
+                VStack(spacing: 8) {
+                    HStack {
+                        Text("¿Cuál es el período de tu ciclo?")
+                            .font(Font.custom("Arial", size: 24).weight(.semibold))
+                            .foregroundColor(.black)
+                            .frame(width: 350, alignment: .leading)
+                            .padding(.leading, 50)
+                            .padding(.bottom)
+                            .lineLimit(3)
+                    }
+                   
+                    HStack {
+                        ForEach([30, 29, 28], id: \.self) { day in
+                            Button(action: {
+                                selectedCycle = day
+                            }) {
+                                Text("\(day)")
+                                    .padding()
+                                    .frame(width: 60, height: 60)
+                                    .background(selectedCycle == day ? Color.blue.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
+                                    .padding(5)
+                                    .padding(.bottom, 20)
+                            }
+                        }
+                        
                         Button(action: {
-                            selectedCycle = day
+                            // Acción para agregar un nuevo ciclo
                         }) {
-                            Text("\(day)")
+                            Image(systemName: "plus")
                                 .padding()
                                 .frame(width: 60, height: 60)
-                                .background(selectedCycle == day ? Color.blue.opacity(0.2) : Color.clear)
-                                .cornerRadius(10)
-                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
+                                .background(Color.blue.opacity(0.2))
+                                .cornerRadius(50)
+                                .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.blue, lineWidth: 1))
                                 .padding(5)
+                                .padding(.bottom, 20)
                         }
+                        
                     }
-                    
-                    Button(action: {
-                        // Acción para agregar un nuevo ciclo
-                    }) {
-                        Image(systemName: "plus")
-                            .padding()
-                            .frame(width: 60, height: 60)
-                            .background(Color.blue.opacity(0.2))
-                            .cornerRadius(50)
-                            .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.blue, lineWidth: 1))
-                            .padding(5)
-                    }
-                    
                 }
-            }
-            .padding(.bottom, 20)
-            // Sección inferior con barra de progreso y navegación
-            HStack(spacing: 50) {
-                Image("Sliedbar")
-                    .resizable()
-                    .frame(width: 50, height: 8)
-                    .padding(.trailing, 100)
-                
-                HStack(spacing: 16) {
-                    NavigationLink(destination: Login5()) {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
-                            .frame(width: 24, height: 24)
+                .padding(.bottom, 20)
+                // Sección inferior con barra de progreso y navegación
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack{
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 6, height: 6)
+                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                            .cornerRadius(4)
+                            .padding(.leading, 20)
+                           
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 6, height: 6)
+                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                            .cornerRadius(4)
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 6, height: 6)
+                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                            .cornerRadius(4)
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 20, height: 6)
+                            .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                            .cornerRadius(4)
+                           
+                        }
+                       
                     }
                     
-                    NavigationLink(destination: Login7()) {
-                        Image(systemName: "arrow.right")
-                            .foregroundColor(.black)
-                            .frame(width: 24, height: 24)
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack{
+                            NavigationLink(destination: Login5()){
+                                Image("Arrow")
+                                    .rotationEffect(.degrees(180))
+                                  
+                                
+                            }
+                            NavigationLink(destination: Login7()){
+                                Image("Arrow")
+                                    .padding(.trailing, 20)
+                                    
+                                
+                            }
+                        }
+                        
+                        
                     }
+
+                   
                 }
             }
         }
-        .padding(.bottom, 30)
-        .padding(.top, 40)
-        .padding(.horizontal, 16)
+        
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showDatePicker) {
             DatePickerView(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
         }

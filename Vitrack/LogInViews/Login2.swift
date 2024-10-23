@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Login2: View {
+    @State private var floatUpDown = false
     var body: some View {
         NavigationStack{
             ZStack{
@@ -18,7 +19,8 @@ struct Login2: View {
                             .frame(width: 34, height: 34)
                             .padding(.trailing,220)
                             .padding(.top,150)
-                        
+                            .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
+                            .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true), value: floatUpDown)
                         Text("Un nuevo comienzo")
                             .font(Font.custom("Arial", size: 35).weight(.semibold))
                             .lineSpacing(25)
@@ -38,28 +40,63 @@ struct Login2: View {
                             .cornerRadius(263)
                             .padding(.leading,400)
                             .padding(.bottom, 150)
+                            .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
+                            .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
                    
                     
                         
                         
-                        
-                    
-                    
-                    HStack{
-                        
-                        Image("Sliedbar")
-                            .frame(width: 250, height: 8)
-                        
-                        NavigationLink(destination: Login3()){
-                            Image("Arrow")
-                                .frame(width: 250, height: 24)
-                            
-                        }
-                    }
+                            .toolbar {
+                                ToolbarItem(placement: .bottomBar) {
+                                    HStack{
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 20, height: 6)
+                                        .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                                        .cornerRadius(4)
+                                        .padding(.leading, 20)
+                                       
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 6, height: 6)
+                                        .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                        .cornerRadius(4)
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 6, height: 6)
+                                        .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                        .cornerRadius(4)
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 6, height: 6)
+                                        .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                        .cornerRadius(4)
+                                       
+                                    }
+                                   
+                                }
+                                ToolbarItem(placement: .bottomBar) {
+                                    NavigationLink(destination: Login3()){
+                                        Image("Arrow")
+                                            .padding(.trailing, 20)
+                                            
+                                        
+                                    }
+                                    
+                                }
+
+                               
+                            }
+            
                     .padding()
+                   
                 }
             }
+            .onAppear {
+                floatUpDown = true
+            }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
