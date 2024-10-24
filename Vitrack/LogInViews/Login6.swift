@@ -4,152 +4,176 @@ struct Login6: View {
     @State private var selectedDate = Date() // Variable para la fecha seleccionada
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
     @State private var selectedCycle = 30
-
+    @State private var floatUpDown = false
+  
     var body: some View {
         NavigationStack{
-            VStack(spacing: 24) {
-                // Título principal
-                Text("Ingresa el día de tu ultimo periodo para hacer los calculos necesarios")
-                    .font(Font.custom("Arial", size: 24).weight(.semibold))
-                    .foregroundColor(.black)
-                    .frame(width: 350, height: 90, alignment: .leading)
-                    .padding(.top, 90)
-                    .padding(.leading, 50)
-                Spacer()
-                // Subtítulo
-                Text("¿Cuando fue tu última menstruación?")
-                    .font(Font.custom("Arial", size: 20).weight(.semibold))
-                    .foregroundColor(.black)
-                    .frame(width: 350, alignment: .leading)
-                    .padding(.leading, 50)
-                    .padding(.bottom, 20)
-                // Botón para seleccionar fecha
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Fecha")
-                        .font(Font.custom("Arial", size: 14))
-                        .foregroundColor(.gray)
-                        .padding(.leading, 5)
-                    Button(action: {
-                        showDatePicker.toggle() // Mostrar DatePicker
-                    }) {
-                        Text("   \(selectedDate, formatter: dateFormatter)")
-                            .font(Font.custom("Arial", size: 16))
+            ZStack{
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 50, height: 50)
+                    .background(Color(red: 0.01, green: 0.71, blue: 0.02).opacity(0.3))
+                    .cornerRadius(263)
+                    .position(x:350, y:40)
+                    .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: floatUpDown)
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 80, height: 80)
+                    .background(Color(red: 0.01, green: 0.70, blue: 0.86).opacity(0.3))
+                    .cornerRadius(263)
+                    .position(x:50, y:500)
+                    .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
+                VStack(spacing: 24) {
+                    // Título principal
+                    Text("Ingresa el día de tu ultimo periodo para hacer los calculos necesarios")
+                        .font(Font.custom("Arial", size: 24).weight(.semibold))
+                        .foregroundColor(.black)
+                        .frame(width: 350, height: 90, alignment: .leading)
+                        .padding(.top, 90)
+                        .padding(.leading, 50)
+                    Spacer()
+                    // Subtítulo
+                    Text("¿Cuando fue tu última menstruación?")
+                        .font(Font.custom("Arial", size: 20).weight(.semibold))
+                        .foregroundColor(.black)
+                        .frame(width: 350, alignment: .leading)
+                        .padding(.leading, 50)
+                        .padding(.bottom, 20)
+                    // Botón para seleccionar fecha
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Fecha")
+                            .font(Font.custom("Arial", size: 14))
                             .foregroundColor(.gray)
-                            .frame(width: 300, height: 50, alignment: .leading)
-                        
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.green, lineWidth: 1.5)
-                                    .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.95))
-                            )
-                            .padding(5)
+                            .padding(.leading, 5)
+                        Button(action: {
+                            showDatePicker.toggle() // Mostrar DatePicker
+                        }) {
+                            Text("   \(selectedDate, formatter: dateFormatter)")
+                                .font(Font.custom("Arial", size: 16))
+                                .foregroundColor(.gray)
+                                .frame(width: 300, height: 50, alignment: .leading)
                             
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.green, lineWidth: 1.5)
+                                        .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.95))
+                                )
+                                .padding(5)
+                                
+                        }
                     }
-                }
-                .padding(.horizontal, 16)
-                HStack() {
-                    Rectangle()
-                        .frame(width: 300, height: 1)
-                        .padding(.top, 30)
-                        .padding(.bottom, 30)
-                }
-                
-                // Sección de "Cuál es el periodo de tu ciclo?"
-                VStack(spacing: 8) {
-                    HStack {
-                        Text("¿Cuál es el período de tu ciclo?")
-                            .font(Font.custom("Arial", size: 24).weight(.semibold))
-                            .foregroundColor(.black)
-                            .frame(width: 350, alignment: .leading)
-                            .padding(.leading, 50)
-                            .padding(.bottom)
-                            .lineLimit(3)
+                    .padding(.horizontal, 16)
+                    HStack() {
+                        Rectangle()
+                            .frame(width: 300, height: 1)
+                            .padding(.top, 30)
+                            .padding(.bottom, 30)
                     }
-                   
-                    HStack {
-                        ForEach([30, 29, 28], id: \.self) { day in
+                    
+                    // Sección de "Cuál es el periodo de tu ciclo?"
+                    VStack(spacing: 8) {
+                        HStack {
+                            Text("¿Cuál es el período de tu ciclo?")
+                                .font(Font.custom("Arial", size: 24).weight(.semibold))
+                                .foregroundColor(.black)
+                                .frame(width: 350, alignment: .leading)
+                                .padding(.leading, 50)
+                                .padding(.bottom)
+                                .lineLimit(3)
+                        }
+                       
+                        HStack {
+                            ForEach([30, 29, 28], id: \.self) { day in
+                                Button(action: {
+                                    selectedCycle = day
+                                }) {
+                                    Text("\(day)")
+                                        .padding()
+                                        .frame(width: 60, height: 60)
+                                        .background(selectedCycle == day ? Color.blue.opacity(0.2) : Color.clear)
+                                        .cornerRadius(10)
+                                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
+                                        .padding(5)
+                                        .padding(.bottom, 20)
+                                }
+                            }
+                            
                             Button(action: {
-                                selectedCycle = day
+                                // Acción para agregar un nuevo ciclo
                             }) {
-                                Text("\(day)")
+                                Image(systemName: "plus")
                                     .padding()
                                     .frame(width: 60, height: 60)
-                                    .background(selectedCycle == day ? Color.blue.opacity(0.2) : Color.clear)
-                                    .cornerRadius(10)
-                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
+                                    .background(Color.blue.opacity(0.2))
+                                    .cornerRadius(50)
+                                    .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.blue, lineWidth: 1))
                                     .padding(5)
                                     .padding(.bottom, 20)
                             }
+                            
                         }
-                        
-                        Button(action: {
-                            // Acción para agregar un nuevo ciclo
-                        }) {
-                            Image(systemName: "plus")
-                                .padding()
-                                .frame(width: 60, height: 60)
-                                .background(Color.blue.opacity(0.2))
-                                .cornerRadius(50)
-                                .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.blue, lineWidth: 1))
-                                .padding(5)
-                                .padding(.bottom, 20)
-                        }
-                        
                     }
-                }
-                .padding(.bottom, 20)
-                // Sección inferior con barra de progreso y navegación
-                .toolbar {
-                    ToolbarItem(placement: .bottomBar) {
-                        HStack{
-                            Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 6, height: 6)
-                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
-                            .cornerRadius(4)
-                            .padding(.leading, 20)
-                           
-                            Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 6, height: 6)
-                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
-                            .cornerRadius(4)
-                            Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 6, height: 6)
-                            .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
-                            .cornerRadius(4)
-                            Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 20, height: 6)
-                            .background(Color(red: 0.70, green: 0.12, blue: 0.41))
-                            .cornerRadius(4)
+                    .padding(.bottom, 20)
+                    // Sección inferior con barra de progreso y navegación
+                    .toolbar {
+                        ToolbarItem(placement: .bottomBar) {
+                            HStack{
+                                Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 6, height: 6)
+                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                .cornerRadius(4)
+                                .padding(.leading, 20)
+                               
+                                Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 6, height: 6)
+                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                .cornerRadius(4)
+                                Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 6, height: 6)
+                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                .cornerRadius(4)
+                                Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 20, height: 6)
+                                .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                                .cornerRadius(4)
+                               
+                            }
                            
                         }
+                        
+                        ToolbarItem(placement: .bottomBar) {
+                            HStack{
+                                NavigationLink(destination: Login5()){
+                                    Image("Arrow")
+                                        .rotationEffect(.degrees(180))
+                                      
+                                    
+                                }
+                                NavigationLink(destination: Login7()){
+                                    Image("Arrow")
+                                        .padding(.trailing, 20)
+                                        
+                                    
+                                }
+                            }
+                            
+                            
+                        }
+
                        
                     }
-                    
-                    ToolbarItem(placement: .bottomBar) {
-                        HStack{
-                            NavigationLink(destination: Login5()){
-                                Image("Arrow")
-                                    .rotationEffect(.degrees(180))
-                                  
-                                
-                            }
-                            NavigationLink(destination: Login7()){
-                                Image("Arrow")
-                                    .padding(.trailing, 20)
-                                    
-                                
-                            }
-                        }
-                        
-                        
-                    }
-
-                   
                 }
+
+
+            }
+            .onAppear(){
+                floatUpDown = true
             }
         }
         
