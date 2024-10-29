@@ -7,7 +7,8 @@ struct Login4: View {
     var name: String // Propiedad para almacenar el nombre pasado.
     @State private var floatUpDown = false
     
-   
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -50,7 +51,7 @@ struct Login4: View {
                         .cornerRadius(16)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color(red: 0.96, green: 0.47, blue: 0.59), lineWidth: 1)
+                                .stroke(Color(red: 0.01, green: 0.7, blue: 0.86), lineWidth: 1) // Color del borde
                         )
                         .overlay(
                             Button(action: {
@@ -88,49 +89,57 @@ struct Login4: View {
                         .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
                         .animation(Animation.easeInOut(duration: 2.5).repeatForever(autoreverses: true), value: floatUpDown)
                 }
-
+                
                 Spacer()
                     .toolbar {
                         ToolbarItem(placement: .bottomBar) {
                             HStack{
                                 Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 6, height: 6)
-                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
-                                .cornerRadius(4)
-                                .padding(.leading, 20)
-                               
+                                    .foregroundColor(.clear)
+                                    .frame(width: 6, height: 6)
+                                    .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                    .cornerRadius(4)
+                                    .padding(.leading, 20)
+                                
                                 Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 6, height: 6)
-                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
-                                .cornerRadius(4)
+                                    .foregroundColor(.clear)
+                                    .frame(width: 6, height: 6)
+                                    .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                    .cornerRadius(4)
                                 Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 20, height: 6)
-                                .background(Color(red: 0.70, green: 0.12, blue: 0.41))
-                                .cornerRadius(4)
+                                    .foregroundColor(.clear)
+                                    .frame(width: 20, height: 6)
+                                    .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                                    .cornerRadius(4)
                                 Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 6, height: 6)
-                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
-                                .cornerRadius(4)
-                               
-                            }
-                           
-                        }
-                        
-                        ToolbarItem(placement: .bottomBar) {
-                            NavigationLink(destination: Login5()){
-                                Image("Arrow")
-                                    .padding(.trailing, 20)
-                                    
+                                    .foregroundColor(.clear)
+                                    .frame(width: 6, height: 6)
+                                    .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                    .cornerRadius(4)
                                 
                             }
                             
                         }
-
-                       
+                        
+                        ToolbarItem(placement: .bottomBar) {
+                            HStack {
+                                Button(){
+                                    dismiss()
+                                }
+                                label: {
+                                    Image("Arrow")
+                                        .rotationEffect(.degrees(180))
+                                    
+                                }
+                                NavigationLink(destination: Login5()){
+                                    Image("Arrow")
+                                        .padding(.trailing, 20)
+                                }
+                            }
+                            
+                        }
+                        
+                        
                     }.onAppear {
                         floatUpDown = true
                     }
@@ -142,14 +151,14 @@ struct Login4: View {
             DatePickerView2(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
         }
     }
-    
-    // Formateador para la fecha seleccionada
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium // Estilo de fecha
-        formatter.locale = Locale(identifier: "es_ES") // Español
-        return formatter
-    }
+}
+
+// Formateador para la fecha seleccionada
+private var dateFormatter: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium // Estilo de fecha
+    formatter.locale = Locale(identifier: "es_ES") // Español
+    return formatter
 }
 
 struct DatePickerView2: View {

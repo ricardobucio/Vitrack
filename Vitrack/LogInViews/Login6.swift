@@ -5,6 +5,8 @@ struct Login6: View {
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
     @State private var selectedCycle = 30
     @State private var floatUpDown = false
+    
+    @Environment(\.dismiss) var dismiss
   
     var body: some View {
         NavigationStack{
@@ -149,7 +151,10 @@ struct Login6: View {
                         
                         ToolbarItem(placement: .bottomBar) {
                             HStack{
-                                NavigationLink(destination: Login5()){
+                                Button() {
+                                    dismiss()
+                                }
+                                label: {
                                     Image("Arrow")
                                         .rotationEffect(.degrees(180))
                                       

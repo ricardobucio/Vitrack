@@ -25,6 +25,7 @@ struct Login5: View {
                     .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
 
                 VStack {
+                        Spacer()
                     // Título principal
                     Text("¿Sabes si estás embarazada?")
                         .font(
@@ -40,31 +41,51 @@ struct Login5: View {
                     // Botón de "Calcular due date"
                     NavigationLink(destination: Login6()) {
                         VStack {
-                            Image("Ellipse 709")
-                                .frame(width: 35, height: 35)
-                            Text("Calcular due date")
-                                .font(Font.custom("Arial", size: 14))
-                                .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.12))
-                                .frame(width: 197, height: 23, alignment: .bottom)
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 40))
+                                .foregroundStyle(.green)
+                            Text("¡Obten tu pronostico!")
+                                .font(Font.custom("Arial", size: 16))
+                                .bold()
+                                .foregroundStyle(.green)
+                                .frame(width: 200, height: 23, alignment: .bottom)
                         }
                         .padding()
                         .background(Color.green.opacity(0.2))
                         .cornerRadius(15)
                     }
                     
-                    Spacer().frame(height: 30) // Espaciado entre los botones
+                    Spacer().frame(height: 20) // Espaciado entre los botones
                     
                     // Botón de "Ingresar fecha manualmente"
                     NavigationLink(destination: IngresarFechaView()) {
                         VStack {
-                            Image("Ellipse 708")
-                                .frame(width: 35, height: 35)
-                            Text("Ingresar fecha manualmente")
-                                .font(Font.custom("Arial", size: 14))
-                                .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.12))
-                                .frame(width: 197, height: 23, alignment: .bottom)
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 40))
+                                .foregroundStyle(.orange)
+                            Text("Ya conozco")
+                                .font(Font.custom("Arial", size: 16))
+                                .bold()
+                                .foregroundStyle(.orange)
+                                .frame(width: 200, height: 23, alignment: .bottom)
                         }
                         .padding()
+                        .background(Color.orange.opacity(0.2))
+                        .cornerRadius(15)
+                    }
+                    Spacer()
+                    NavigationLink(destination: IngresarFechaView()) {
+                        HStack {
+                            Image(systemName: "info.circle.fill")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.blue)
+                            Text("Informate")
+                                .font(Font.custom("Arial", size: 16))
+                                .bold()
+                                .foregroundStyle(.blue)
+                        }
+                        .padding(.horizontal, 60)
+                        .padding(.vertical)
                         .background(Color.blue.opacity(0.2))
                         .cornerRadius(15)
                     }
@@ -72,7 +93,7 @@ struct Login5: View {
                
                 
                     
-                    Spacer().frame(height: 100) // Espaciado antes de la barra inferior
+                    Spacer().frame(height: 40) // Espaciado antes de la barra inferior
                     
                     // Barra inferior y flecha de navegación
                     

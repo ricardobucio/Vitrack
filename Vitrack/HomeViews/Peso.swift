@@ -16,24 +16,18 @@ struct Peso: View {
             VStack(spacing: 24) {
                 // Sección superior con título y botón de retroceso
                 HStack {
-                    VStack(alignment: .leading) {
+                    VStack() {
                         Text("Peso")
                             .font(
-                                Font.custom("Arial", size: 20)
-                                    .weight(.bold)
-                            )
+                                Font.custom("Arial", size: 20).weight(.bold))
                             .foregroundColor(.black)
                         
                         Text("Primer trimestre")
-                            .font(
-                                Font.custom("Arial", size: 12)
-                            )
+                            .font(Font.custom("Arial", size: 12))
                             .foregroundColor(.black)
+                            .padding(.leading, 32)
                     }
-                    .padding(.top,16)
-                    
                     Spacer()
-                    
                     NavigationLink(destination: Home1()){
                         ZStack{
                             Circle()
@@ -43,9 +37,9 @@ struct Peso: View {
                             Image(systemName: "arrow.left")
                                 .foregroundColor(.black)
                         }
+                        .padding(.trailing, 36)
                     }
                 }
-                .padding(.horizontal, 16)
                 .padding(.top,16)
                 
                 // Barra de "Track"
@@ -178,31 +172,7 @@ struct Peso: View {
                             .font(Font.custom("Arial", size: 12))
                     }
                 }
-                .padding(.horizontal, 16)
-                
-                // Sección inferior con los íconos de navegación
-                HStack(spacing: 32) {
-                    Image("Group (2)") // Asumir nombre de la imagen del ícono de casa
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(20)
-                    
-                    Image("Group (1)") // Asumir nombre de la imagen del ícono de calendario
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(20)
-                    
-                    Image("Group") // Asumir nombre de la imagen del ícono de libro
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(20)
-                    
-                    Image("Vector (6)") // Asumir nombre de la imagen del ícono de perfil
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(20)
-                }
-                .padding(.top, 120)
+                Spacer()
             }
             //.padding(.vertical,150 )
             .navigationBarBackButtonHidden(true) // Ocultar el botón de retroceso

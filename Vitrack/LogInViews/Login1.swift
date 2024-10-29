@@ -76,7 +76,7 @@ struct Login1: View {
                         .font(Font.custom("Arial", size: 14))
                         .foregroundColor(Color(red: 0.29, green: 0.34, blue: 0.41))
                     
-                    Text("Inicia sesión")
+                    Text("Registrate")
                         .font(Font.custom("Arial", size: 14))
                         .fontWeight(.bold) // Aplica negrita
                         .foregroundColor(Color(red: 0.29, green: 0.30, blue: 0.41))

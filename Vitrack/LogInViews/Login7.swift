@@ -3,6 +3,8 @@ import SwiftUI
 struct Login7: View {
     @State private var floatUpDown = false
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -65,7 +67,10 @@ struct Login7: View {
                             ToolbarItem(placement: .bottomBar) {
                                 HStack{
                                     Spacer()
-                                    NavigationLink(destination: Login6()){
+                                    Button() {
+                                        dismiss()
+                                    }
+                                    label: {
                                         Image("Arrow")
                                             .rotationEffect(.degrees(180))
                                     }

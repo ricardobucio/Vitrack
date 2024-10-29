@@ -10,8 +10,9 @@ import SwiftUI
 struct Login3: View {
     @State private var inputText: String = "" // Estado para almacenar el texto ingresado
     @State private var floatUpDown = false
+    
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-       
         NavigationStack{
             ZStack{
                 Rectangle()
@@ -63,45 +64,51 @@ struct Login3: View {
            
             }
             
-                .toolbar {
-                    ToolbarItem(placement: .bottomBar) {
-                        HStack{
-                            Rectangle()
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    HStack{
+                        Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: 6, height: 6)
                             .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
                             .cornerRadius(4)
                             .padding(.leading, 20)
-                            Rectangle()
+                        Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: 20, height: 6)
                             .background(Color(red: 0.70, green: 0.12, blue: 0.41))
                             .cornerRadius(4)
-                            Rectangle()
+                        Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: 6, height: 6)
                             .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
                             .cornerRadius(4)
-                          
-                            Rectangle()
+                        
+                        Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: 6, height: 6)
                             .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
                             .cornerRadius(4)
-                        }
-                       
                     }
-                    ToolbarItem(placement: .bottomBar) {
-                        NavigationLink(destination: Login4(name: inputText)){
+                    
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    HStack {
+                        Button(){
+                            dismiss()
+                        }
+                        label: {
                             Image("Arrow")
-                                .padding(.trailing, 20)
-                                
+                                .rotationEffect(.degrees(180))
                             
                         }
-                        
+                            NavigationLink(destination: Login4(name: inputText)){
+                                Image("Arrow")
+                                    .padding(.trailing, 20)
+                            }
+                        }
                     }
-
-                   
+                
                 }.onAppear {
                     floatUpDown = true
                 }
