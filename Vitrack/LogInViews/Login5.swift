@@ -7,26 +7,12 @@ struct Login5: View {
        
         NavigationStack {
             ZStack{
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 50, height: 50)
-                    .background(Color(red: 0.96, green: 0.73, blue: 0.02).opacity(0.3))
-                    .cornerRadius(263)
-                    .position(x:60, y:100)
-                    .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
-                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: floatUpDown)
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 300, height: 300)
-                    .background(Color(red: 0.96, green: 0.47, blue: 0.59).opacity(0.3))
-                    .cornerRadius(263)
-                    .position(x:360, y:700)
-                    .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
-                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
-
+                Color(red: 0.95, green: 0.95, blue: 0.97)
+                    .ignoresSafeArea()
+                
                 VStack {
                     // Título principal
-                    Text("¿Sabes si estás embarazada?")
+                    Text("¿Para cúando esperas el nacimiento?")
                         .font(
                             Font.custom("Arial", size: 21)
                                 .weight(.semibold)
@@ -35,56 +21,87 @@ struct Login5: View {
                         .foregroundColor(.black)
                         .frame(width: 240, alignment: .top)
                     
-                    Spacer().frame(height: 50) // Espaciado superior
                     
                     // Botón de "Calcular due date"
                     NavigationLink(destination: Login6()) {
                         VStack {
-                            Image("Ellipse 709")
-                                .frame(width: 35, height: 35)
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 60, height: 60)
+                            .background(Color(red: 0.86, green: 0.83, blue: 1))
+                            .cornerRadius(30)
+                            .overlay(
+                                Image("calc")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            )
+                            
                             Text("Calcular due date")
-                                .font(Font.custom("Arial", size: 14))
+                                .font(Font.custom("Arial", size: 14).weight(.semibold))
                                 .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.12))
                                 .frame(width: 197, height: 23, alignment: .bottom)
                         }
                         .padding()
-                        .background(Color.green.opacity(0.2))
+                        .frame(width: 236, height: 146)
+                        .background(.white)
                         .cornerRadius(15)
                     }
+                    .padding(30)
                     
-                    Spacer().frame(height: 30) // Espaciado entre los botones
+                  
                     
                     // Botón de "Ingresar fecha manualmente"
                     NavigationLink(destination: IngresarFechaView()) {
                         VStack {
-                            Image("Ellipse 708")
-                                .frame(width: 35, height: 35)
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 60, height: 60)
+                            .background(Color(red: 0.86, green: 0.83, blue: 1))
+                            .cornerRadius(30)
+                            .overlay(
+                                Image("calendario")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            )
+                            
                             Text("Ingresar fecha manualmente")
-                                .font(Font.custom("Arial", size: 14))
+                                .font(Font.custom("Arial", size: 14).weight(.semibold))
                                 .foregroundColor(Color(red: 0.12, green: 0.12, blue: 0.12))
                                 .frame(width: 197, height: 23, alignment: .bottom)
                         }
                         .padding()
-                        .background(Color.blue.opacity(0.2))
+                        .frame(width: 236, height: 146)
+                        .background(.white)
                         .cornerRadius(15)
                     }
                     
                
-                
                     
-                    Spacer().frame(height: 100) // Espaciado antes de la barra inferior
-                    
-                    // Barra inferior y flecha de navegación
-                    
-                    .padding(.top, 40)
+                    Text("¿No estás segura si estás embarazada?")
+                        .font(Font.custom("Inter", size: 13))
+                        .underline()
+                        .frame(width: 160, height: 60)
+                        .foregroundColor(Color(red: 0.31, green: 0.31, blue: 0.31))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 30)
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 171, height: 37)
+                        .background(Color(red: 0.48, green: 0.25, blue: 0.86))
+                        .cornerRadius(20)
+                        .overlay(
+                          
+                            Text("Infórmate")
+                            .font(Font.custom("Poppins", size: 14).weight(.semibold))
+                            .lineSpacing(22)
+                            .foregroundColor(.white)
+                            )
                 }
                
 
             }
-            .onAppear(){
-                floatUpDown = true
-            }
-            .padding(.horizontal, 16)
+           
+          
         }
         .navigationBarBackButtonHidden(true)
     }

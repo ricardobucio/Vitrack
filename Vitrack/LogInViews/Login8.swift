@@ -6,11 +6,14 @@ struct Login8: View {
 
     var body: some View {
         ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(red: 0.41, green: 0.22, blue: 0.75).opacity(0.90), Color(red: 0.56, green: 0.38, blue: 0.89).opacity(0)]), startPoint: .bottom, endPoint: .top)
+                .ignoresSafeArea()
             if isLoadingComplete {
-                Home1()
+               HomeBar()
                   
             } else {
                 VStack {
+                    Image("Logo")
                     ProgressBar(progress: progress)
                         .frame(width: 300, height: 20)
                         .padding()
@@ -56,7 +59,7 @@ struct ProgressBar: View {
             Rectangle()
                 .frame(width: progress * 300, height: 20)
                 .cornerRadius(10)
-                .foregroundColor(Color(red: 0.96, green: 0.47, blue: 0.59))
+                .foregroundColor(.purple)
         }
     }
 }
