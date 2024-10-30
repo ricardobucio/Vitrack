@@ -13,35 +13,66 @@ struct HomeBar: View {
                 default:
                     Home1()
                 }
-                HStack{
-                    Button() {
-                        tab = 0
+                   
+                       
+               
+            }
+            .toolbar{
+                ToolbarItem(placement: .bottomBar){
+                    HStack(spacing: 30){
+                        Button() {
+                            tab = 0
+                        }
+                        label: {
+                            Image(systemName: "house.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(tab == 0 ? Color(red: 0.48, green: 0.25, blue: 0.86) : .black)
+                            
+                            
+                               
+                        }
+                        Button() {
+                            tab = 1
+                        }
+                        label: {
+                            Image(systemName: "calendar")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(tab == 1 ? Color(red: 0.48, green: 0.25, blue: 0.86) : .black)
+                        }
+                        Button() {
+                            tab = 2
+                        }
+                        label: {
+                            Image(systemName: "plus.app.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(tab == 2 ? Color(red: 0.48, green: 0.25, blue: 0.86) : .black)
+                        }
+                        Button() {
+                            tab = 3
+                        }
+                        label: {
+                            Image(systemName: "ellipsis.message.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(tab == 3 ? Color(red: 0.48, green: 0.25, blue: 0.86) : .black)
+                        }
+                        Button() {
+                            tab = 4
+                        }
+                        label: {
+                            Image(systemName: "person.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(tab == 4 ? Color(red: 0.48, green: 0.25, blue: 0.86) : .black)
+                        }
+                            
                     }
-                    label: {
-                        Image("Group (2)") // Asumir nombre de la imagen del ícono de casa
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding(20)
-                    }
-                    Button() {
-                        tab = 1
-                    }
-                    label: {
-                        Image("Group (1)") // Asumir nombre de la imagen del ícono de casa
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding(20)
-                    }
-                    Image("Group") // Asumir nombre de la imagen del ícono de libro
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(20)
-
-                    Image("Vector (6)") // Asumir nombre de la imagen del ícono de perfil
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(20)
                 }
+               
+
             }
         }
        

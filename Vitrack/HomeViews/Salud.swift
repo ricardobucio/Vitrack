@@ -26,7 +26,7 @@ struct SaludView: View {
                         // Acción para el botón de retroceso
                     }) {
                         
-                        NavigationLink(destination: Home1()){
+                        NavigationLink(destination: HomeBar()){
                         ZStack {
                             Circle()
                                 .frame(width: 30, height: 30)

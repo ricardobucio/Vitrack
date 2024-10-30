@@ -6,7 +6,7 @@ struct Login8: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color(red: 0.41, green: 0.22, blue: 0.75).opacity(0.90), Color(red: 0.56, green: 0.38, blue: 0.89).opacity(0)]), startPoint: .bottom, endPoint: .top)
+            Color(red: 0.95, green: 0.95, blue: 0.97)
                 .ignoresSafeArea()
             if isLoadingComplete {
                HomeBar()

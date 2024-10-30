@@ -24,7 +24,9 @@ struct CalendarView: View {
                 Text("\(events[event].name)")
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
+
 }
 
 #Preview {
