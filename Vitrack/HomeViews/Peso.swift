@@ -15,6 +15,8 @@ struct Peso: View {
         
         NavigationStack{
             ZStack{
+                
+                   
                 Color(red: 0.95, green: 0.95, blue: 0.97)
                     .ignoresSafeArea()
                 VStack(spacing: 24) {

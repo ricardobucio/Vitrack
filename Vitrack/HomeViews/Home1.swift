@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct Home1: View {
+  
     var body: some View {
 
         NavigationStack {
@@ -168,6 +169,37 @@ struct Home1: View {
                          
 
                             VStack(spacing: 15) {
+                                
+                                NavigationLink(destination: SaludView()) {
+                                    
+                                    // Primer ítem (Peso)
+                                    Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 336, height: 61)
+                                        .background(.white)
+                                        .cornerRadius(13)
+                                        .overlay(
+                                            HStack {
+                        
+                                            Image("Vector (1) 1")
+                                                .resizable()
+                                                .frame(width: 26.31579, height: 25)
+                                                .foregroundColor(.black)
+                                                .padding(.leading, 30)
+
+                                            Text("Servicio Médico")
+                                                .font(
+                                                    Font.custom("Arial", size: 16)
+                                                        .weight(.semibold)
+                                                )
+                                                .multilineTextAlignment(.center)
+                                                .foregroundColor(.black)
+                                                Spacer()
+                                        }
+                                        )
+                                       
+                                }
+
                                 NavigationLink(destination: Peso()) {
                                     Rectangle()
                                         .foregroundColor(.clear)
@@ -225,66 +257,9 @@ struct Home1: View {
                                 }
 
 
-                                NavigationLink(destination: SaludView()) {
-                                    
-                                    // Primer ítem (Peso)
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 336, height: 61)
-                                        .background(.white)
-                                        .cornerRadius(13)
-                                        .overlay(
-                                            HStack {
-                        
-                                            Image("Vector (1) 1")
-                                                .resizable()
-                                                .frame(width: 26.31579, height: 25)
-                                                .foregroundColor(.black)
-                                                .padding(.leading, 30)
-
-                                            Text("Salud")
-                                                .font(
-                                                    Font.custom("Arial", size: 16)
-                                                        .weight(.semibold)
-                                                )
-                                                .multilineTextAlignment(.center)
-                                                .foregroundColor(.black)
-                                                Spacer()
-                                        }
-                                        )
-                                       
-                                }
-
 
                                 
-                                NavigationLink(destination: Ejercicio()) {
-                                    
-                                    // Primer ítem (Peso)
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 336, height: 61)
-                                        .background(.white)
-                                        .cornerRadius(13)
-                                        .overlay(
-                                            HStack {
-                        
-                                            Image("Vector (5)")
-                                                .resizable()
-                                                .frame(width: 26.31579, height: 25)
-                                                .foregroundColor(.black)
-                                                .padding(.leading, 30)
-
-                                            Text("Ejercicio")
-                                                .font(
-                                                    Font.custom("Arial", size: 16)
-                                                        .weight(.semibold)
-                                                )
-                                                .multilineTextAlignment(.center)
-                                                .foregroundColor(.black)
-                                                Spacer()
-                                        }
-                                        )
-                                }
+                                
 
                             }
                             .padding(.bottom, 18)
@@ -332,6 +307,6 @@ struct HomeCalendarView: View {
     }
 }
 
-#Preview {
+#Preview{
     Home1()
 }
