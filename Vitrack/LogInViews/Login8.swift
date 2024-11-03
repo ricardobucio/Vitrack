@@ -68,4 +68,6 @@ struct ProgressBar: View {
 
 #Preview {
     Login8()
+        .environmentObject(PregnancyData())
+
 }

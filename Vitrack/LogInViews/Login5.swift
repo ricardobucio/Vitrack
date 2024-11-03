@@ -51,7 +51,7 @@ struct Login5: View {
                   
                     
                     // Botón de "Ingresar fecha manualmente"
-                    NavigationLink(destination: IngresarFechaView()) {
+                    NavigationLink(destination: Login6_2()) {
                         VStack {
                             Rectangle()
                             .foregroundColor(.clear)
@@ -92,7 +92,7 @@ struct Login5: View {
                         .overlay(
                           
                             Text("Infórmate")
-                            .font(Font.custom("Poppins", size: 14).weight(.semibold))
+                            .font(Font.custom("Arial", size: 14).weight(.semibold))
                             .lineSpacing(22)
                             .foregroundColor(.white)
                             )
@@ -107,18 +107,9 @@ struct Login5: View {
     }
 }
 
-struct CalculadoraView: View {
-    var body: some View {
-        Text("Calculadora de due date")
-    }
-}
 
-struct IngresarFechaView: View {
-    var body: some View {
-        Text("Ingresar fecha manualmente")
-    }
-}
 
 #Preview {
     Login5()
+        .environmentObject(PregnancyData())
 }

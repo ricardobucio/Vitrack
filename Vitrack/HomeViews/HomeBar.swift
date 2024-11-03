@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeBar: View {
     @State public var tab = 0
-    
+    @State var pregnancyDate = Date.now
     var body: some View {
         NavigationStack {
             VStack {
@@ -10,7 +10,7 @@ struct HomeBar: View {
                 case 0:
                     Home1()
                 case 1:
-                    CalendarView()
+                    CalendarView(pregnancyDate: $pregnancyDate)
                
                 default:
                     Home1()
@@ -27,4 +27,5 @@ struct HomeBar: View {
 
 #Preview {
     HomeBar()
+        .environmentObject(PregnancyData())
 }
