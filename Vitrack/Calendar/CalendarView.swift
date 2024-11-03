@@ -40,7 +40,7 @@ struct CalendarView: View {
                 ZStack {
                     Rectangle()
                         .foregroundStyle(.white)
-                        .clipShape(.rect(cornerRadius: 25))
+                        .clipShape(.rect(topLeadingRadius: 25, topTrailingRadius: 25))
                         .ignoresSafeArea()
                     VStack {
                         HStack {
