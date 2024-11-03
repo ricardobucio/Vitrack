@@ -187,11 +187,12 @@
 				};
 			};
 			buildConfigurationList = 5C5F98352CBEC4AB00062F9B /* Build configuration list for PBXProject "Vitrack" */;
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 5C5F98312CBEC4AB00062F9B;
 			minimizedProjectReferenceProxies = 1;
