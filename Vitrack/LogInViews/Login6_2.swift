@@ -116,7 +116,6 @@ struct Login6_2: View {
     }
     private func calculateLastPeriodDate() {
            let calendar = Calendar.current
-           // Restamos 280 días de la fecha seleccionada para estimar el último periodo
            if let lastPeriod = calendar.date(byAdding: .day, value: -280, to: selectedDate) {
                pregnancyData.lastPeriodDate = lastPeriod
            }

@@ -66,23 +66,21 @@ struct Home1: View {
 
                             VStack(alignment: .leading, spacing: 10) {
                                 HStack {
-                                    Text("13%")
+                                    Text("\(pregnancyPercentage())%")
                                         .font(Font.custom("Arial", size: 12))
                                         .foregroundColor(.black)
 
-                                    Spacer()
-                                }
-                                .padding(.horizontal, 16)
-
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 16)
                                 HStack(spacing: 0) {
                                     Rectangle()
                                         .foregroundColor(Color(red: 0.48, green: 0.25, blue: 0.86))
-                                        .frame(width: 86, height: 5)
+                                        .frame(width: CGFloat(pregnancyProgressBarWidth()), height: 5)
                                         .cornerRadius(2.5)
-
                                     Rectangle()
                                         .foregroundColor(Color(red: 0.48, green: 0.25, blue: 0.86).opacity(0.5))
-                                        .frame(width: 296 - 86 , height: 5)
+                                        .frame(width: 296 - CGFloat(pregnancyProgressBarWidth()), height: 5)
                                         .cornerRadius(2.5)
                                 }
                                 .frame(width: 296)
@@ -251,6 +249,17 @@ struct Home1: View {
             return "Postparto"
         }
     }
+    
+    func pregnancyPercentage() -> Int {
+            guard let weeks = pregnancyData.weeksPregnant else { return 0 }
+            return min(100, (weeks * 100) / 40)
+        }
+        
+        func pregnancyProgressBarWidth() -> Double {
+            guard let weeks = pregnancyData.weeksPregnant else { return 0.0 }
+            return Double((weeks * 296) / 40)  
+        }
+    
 
 }
 
