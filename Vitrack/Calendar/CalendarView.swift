@@ -76,10 +76,13 @@ struct CalendarView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
+    
 }
 
 #Preview {
     @Previewable @State var pregDate = Date.now
     CalendarView(pregnancyDate: $pregDate)
+        .environmentObject(PregnancyData())
 }

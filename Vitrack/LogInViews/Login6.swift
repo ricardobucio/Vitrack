@@ -150,7 +150,6 @@ struct Login6: View {
             }
             
         }
-        
         .navigationBarBackButtonHidden(true)
         
     }
