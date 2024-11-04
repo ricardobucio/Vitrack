@@ -5,7 +5,7 @@ struct MainCalendarComponent: View {
     @State private var days: [Date] = []
     @Binding var pregnancyDate: Date
     @Binding var selectedDate: Date
-    @EnvironmentObject var pregnancyData: PregnancyData // Referencia al EnvironmentObject
+    @EnvironmentObject var pregnancyData: PregnancyData 
 
     let weekdays = ["D", "L", "M", "M", "J", "V", "S"]
     let cols = Array(repeating: GridItem(.flexible()), count: 7)
@@ -82,7 +82,7 @@ struct MainCalendarComponent: View {
             .onAppear() {
                 days = date.calendarDays
                 if let lastPeriod = pregnancyData.lastPeriodDate {
-                    pregnancyDate = lastPeriod // Inicializar pregnancyDate con lastPeriodDate
+                    pregnancyDate = lastPeriod 
                 }
             }
             .onChange(of: date) {

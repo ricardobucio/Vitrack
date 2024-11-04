@@ -161,6 +161,7 @@ struct Login6: View {
 
         if let days = components.day {
             pregnancyData.weeksPregnant = max(0, days / 7) // Aquí solo tomamos los días transcurridos
+            pregnancyData.lastPeriodDate = selectedDate
         }
     }
 
