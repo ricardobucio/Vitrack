@@ -9,7 +9,10 @@ import SwiftUI
 
 struct Movimiento: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Color(Color(red: 0.86, green: 0.83, blue: 1))
+                .ignoresSafeArea()
+        }
     }
 }
 

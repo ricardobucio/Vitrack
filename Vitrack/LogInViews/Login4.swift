@@ -5,7 +5,7 @@ struct Login4: View {
     @State private var selectedDate = Date() // Estado para almacenar la fecha seleccionada
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
     var name: String // Propiedad para almacenar el nombre pasado.
-   
+    @EnvironmentObject var pregnancyData: PregnancyData
     @Environment(\.dismiss) var dismiss
 
    
@@ -64,6 +64,7 @@ struct Login4: View {
                                 }
                             )
                     }
+                    
                     
                     
                     Spacer()

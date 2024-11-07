@@ -4,6 +4,7 @@ import Combine
 
 class PregnancyData: ObservableObject {
     @Published var weeksPregnant: Int? = nil
+    @Published var weight: Int? = nil
     @Published var lastPeriodDate: Date?
 }
 
