@@ -4,7 +4,7 @@ import SwiftUI
 struct Login4: View {
     @State private var selectedDate = Date() // Estado para almacenar la fecha seleccionada
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
-    var name: String // Propiedad para almacenar el nombre pasado.
+   
     @EnvironmentObject var pregnancyData: PregnancyData
     @Environment(\.dismiss) var dismiss
 
@@ -18,7 +18,7 @@ struct Login4: View {
                 VStack{
                     
                     VStack {
-                        Text("Hola, \(name)")
+                        Text("Hola, \(pregnancyData.name ?? "nil")")
                             .font(Font.custom("Arial", size: 24).weight(.semibold))
                             .foregroundColor(.black)
                             .frame(width: 350, height: 20, alignment: .leading)
@@ -178,5 +178,6 @@ struct DatePickerView2: View {
 }
 
 #Preview {
-    Login4(name: " null")
+    Login4()
+        .environmentObject(PregnancyData())
 }

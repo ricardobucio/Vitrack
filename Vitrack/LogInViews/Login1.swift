@@ -75,4 +75,5 @@ struct Login1: View {
 
 #Preview {
     Login1()
+        .environmentObject(PregnancyData())
 }

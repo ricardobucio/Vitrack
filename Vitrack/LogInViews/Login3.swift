@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Login3: View {
     @State private var inputText: String = "" // Estado para almacenar el texto ingresado
+    @EnvironmentObject var pregnancyData: PregnancyData
     @Environment(\.dismiss) var dismiss
     var body: some View {
        
@@ -32,6 +33,7 @@ struct Login3: View {
                     VStack {
                                 // Caja de texto
                                 TextField("Escribe aquí...", text: $inputText) // Campo de texto
+                        
                                     .padding() // Padding interno
                                     .background(Color.white) // Color de fondo blanco
                                     .cornerRadius(16) // Bordes redondeados
@@ -83,10 +85,13 @@ struct Login3: View {
                                     .rotationEffect(.degrees(180))
                                 
                             }
-                            NavigationLink(destination: Login4(name: inputText)){
+                            NavigationLink(destination: Login4(), label: {
                                 Image("Arrow")
                                     .padding(.trailing, 20)
-                            }
+                            })
+                            .simultaneousGesture(TapGesture().onEnded {
+                                pregnancyData.name = inputText
+                            })
                         }
                         
                     
@@ -108,4 +113,5 @@ struct Login3: View {
 
 #Preview {
     Login3()
+        .environmentObject(PregnancyData())
 }

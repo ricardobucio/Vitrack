@@ -7,15 +7,17 @@
 
 import SwiftUI
 
-struct Movimiento: View {
+struct Comida: View {
+    
     var body: some View {
         ZStack{
             Color(Color(red: 0.86, green: 0.83, blue: 1))
                 .ignoresSafeArea()
         }
+        
     }
 }
-
 #Preview {
-    Movimiento()
+    Comida()
+        .environmentObject(PregnancyData())
 }

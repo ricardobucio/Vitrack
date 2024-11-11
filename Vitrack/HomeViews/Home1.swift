@@ -131,7 +131,7 @@ struct Home1: View {
                             .padding(.bottom, 26)
                         }
                         
-                        NavigationLink(destination: Movimiento()) {
+                        NavigationLink(destination: Comida()) {
                             Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 330, height: 91)
@@ -141,7 +141,7 @@ struct Home1: View {
                                 ], startPoint: UnitPoint(x: 0.5, y: 0), endPoint: UnitPoint(x: 0.5, y: 1)))
                                 .cornerRadius(10)
                                 .overlay(
-                                    Text("Calcula el movimiento de tu bebé")
+                                    Text("Escanea tu comida")
                                         .font(Font.custom("Arial", size: 20).weight(.semibold))
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.white)
@@ -197,29 +197,6 @@ struct Home1: View {
                                                 .foregroundColor(.black)
                                                 .padding(.leading, 30)
                                             Text("Peso")
-                                                .font(Font.custom("Arial", size: 16).weight(.semibold))
-                                                .multilineTextAlignment(.center)
-                                                .foregroundColor(.black)
-                                            Spacer()
-                                        }
-                                    )
-                            }
-
-                            NavigationLink(destination: Alimentacion()) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 336, height: 61)
-                                    .background(.white)
-                                    .cornerRadius(13)
-                                    .overlay(
-                                        HStack {
-                                            Image("Vector (2)")
-                                                .resizable()
-                                                .frame(width: 26.31579, height: 25)
-                                                .foregroundColor(.black)
-                                                .padding(.leading, 30)
-
-                                            Text("Alimentación")
                                                 .font(Font.custom("Arial", size: 16).weight(.semibold))
                                                 .multilineTextAlignment(.center)
                                                 .foregroundColor(.black)

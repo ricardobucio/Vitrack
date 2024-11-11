@@ -11,7 +11,12 @@ struct HomeBar: View {
                     Home1()
                 case 1:
                     CalendarView(pregnancyDate: $pregnancyDate)
-               
+                case 2:
+                    Comida()
+                case 3:
+                    Home1()
+                case 4:
+                    Perfil(pregnancyDate: $pregnancyDate)
                 default:
                     Home1()
                 }
