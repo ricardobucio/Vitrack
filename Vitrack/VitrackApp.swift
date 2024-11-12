@@ -21,7 +21,7 @@ struct VitrackApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                Login1()  // Cambia CalendarView a Login1 para que esta sea la vista inicial
+                Login0()  // Cambia CalendarView a Login1 para que esta sea la vista inicial
                     .environmentObject(pregnancyData)
                     .environmentObject(sharedData)
             }
