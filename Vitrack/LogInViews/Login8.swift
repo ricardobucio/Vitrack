@@ -6,11 +6,14 @@ struct Login8: View {
 
     var body: some View {
         ZStack {
+            Color(red: 0.95, green: 0.95, blue: 0.97)
+                .ignoresSafeArea()
             if isLoadingComplete {
-                Home1()
+               HomeBar()
                   
             } else {
                 VStack {
+                    Image("Logo")
                     ProgressBar(progress: progress)
                         .frame(width: 300, height: 20)
                         .padding()
@@ -56,7 +59,7 @@ struct ProgressBar: View {
             Rectangle()
                 .frame(width: progress * 300, height: 20)
                 .cornerRadius(10)
-                .foregroundColor(Color(red: 0.96, green: 0.47, blue: 0.59))
+                .foregroundColor(.purple)
         }
     }
 }
@@ -65,4 +68,6 @@ struct ProgressBar: View {
 
 #Preview {
     Login8()
+        .environmentObject(PregnancyData())
+
 }

@@ -32,7 +32,7 @@ struct Alimentacion: View {
                             
                             Spacer()
                             
-                            NavigationLink(destination: Home1()) {
+                            NavigationLink(destination: HomeBar()) {
                                 ZStack {
                                     Circle()
                                         .frame(width: 30, height: 30)
@@ -231,35 +231,7 @@ struct Alimentacion: View {
                     Spacer()
                 }
                 
-                // Barra de navegación inferior fija
-                HStack(spacing: 24) {
-                    Image("Group (2)")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.pink)
-                        .padding(20)
-                    
-                    Image("Group (1)")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.black)
-                        .padding(20)
-                    
-                    Image("Group")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.black)
-                        .padding(20)
-                    
-                    Image("Vector (6)")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.black)
-                        .padding(20)
-                }
-                .padding(.top, 10)
-                .padding(.bottom, 20)
-                .background(Color.white)
+               
             }
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarBackButtonHidden(true) // Ocultar el botón de retroceso

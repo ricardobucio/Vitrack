@@ -29,9 +29,30 @@
 		5C5F98542CBEC4AD00062F9B /* VitrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VitrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5CF89F262CE3D62600F29A51 /* Exceptions for "Vitrack" folder in "VitrackTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Scanner/VitaMo13.mlmodel,
+			);
+			target = 5C5F98492CBEC4AD00062F9B /* VitrackTests */;
+		};
+		5CF89F272CE3D62600F29A51 /* Exceptions for "Vitrack" folder in "VitrackUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Scanner/VitaMo13.mlmodel,
+			);
+			target = 5C5F98532CBEC4AD00062F9B /* VitrackUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5C5F983C2CBEC4AB00062F9B /* Vitrack */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5CF89F262CE3D62600F29A51 /* Exceptions for "Vitrack" folder in "VitrackTests" target */,
+				5CF89F272CE3D62600F29A51 /* Exceptions for "Vitrack" folder in "VitrackUITests" target */,
+			);
 			path = Vitrack;
 			sourceTree = "<group>";
 		};
@@ -399,6 +420,7 @@
 				DEVELOPMENT_TEAM = 7UKNH6386P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"La aplicación necesita acceso a la cámara para capturar fotos de comida y analizar su contenido.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +450,7 @@
 				DEVELOPMENT_TEAM = 7UKNH6386P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"La aplicación necesita acceso a la cámara para capturar fotos de comida y analizar su contenido.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

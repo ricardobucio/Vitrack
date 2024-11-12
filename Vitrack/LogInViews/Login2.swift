@@ -8,41 +8,25 @@
 import SwiftUI
 
 struct Login2: View {
-    @State private var floatUpDown = false
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack{
             ZStack{
+                LinearGradient(gradient: Gradient(colors: [Color(red: 0.23, green: 0, blue: 0.62), Color(red: 0.56, green: 0.38, blue: 0.89).opacity(0.70)]), startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
                 VStack{
                    
                         
-                        Image("Ellipse 706")
-                            .frame(width: 34, height: 34)
-                            .padding(.trailing,220)
-                            .padding(.top,150)
-                            .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
-                            .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true), value: floatUpDown)
+                        
                         Text("Un nuevo comienzo")
-                            .font(Font.custom("Arial", size: 35).weight(.semibold))
-                            .lineSpacing(25)
-                            .foregroundColor(.black)
+                            .font(Font.custom("Arial", size: 30).weight(.semibold))
+                            .foregroundColor(.white)
                         Text("Ingresa tu información para que te podamos conocer mejor")
-                            .font(Font.custom("Poppins", size: 15))
-                            .foregroundColor(Color(red: 0.53, green: 0.55, blue: 0.58))
-                            .multilineTextAlignment(.center)
+                            .font(Font.custom("Arial", size: 16))
+                            .foregroundColor(.white)
                             .frame(width: 235, alignment: .center)
-                            .padding(.top, 10)
-                            .fixedSize(horizontal: false, vertical: true)
                             .multilineTextAlignment(.center)
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 263, height: 263)
-                            .background(Color(red: 0.96, green: 0.73, blue: 0.02).opacity(0.3))
-                            .cornerRadius(263)
-                            .padding(.leading,400)
-                            .padding(.bottom, 150)
-                            .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
-                            .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
-                   
+                       
                     
                         
                         
@@ -52,36 +36,47 @@ struct Login2: View {
                                         Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(width: 20, height: 6)
-                                        .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                                        .background(.black)
                                         .cornerRadius(4)
                                         .padding(.leading, 20)
                                        
                                         Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(width: 6, height: 6)
-                                        .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                        .background(.white)
                                         .cornerRadius(4)
                                         Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(width: 6, height: 6)
-                                        .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                        .background(.white)
                                         .cornerRadius(4)
                                         Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(width: 6, height: 6)
-                                        .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                        .background(.white)
                                         .cornerRadius(4)
                                        
                                     }
                                    
                                 }
                                 ToolbarItem(placement: .bottomBar) {
-                                    NavigationLink(destination: Login3()){
-                                        Image("Arrow")
-                                            .padding(.trailing, 20)
+                                    HStack {
+                                        Button(){
+                                            dismiss()
+                                        }
+                                        label: {
+                                            Image("Arrow")
+                                                .rotationEffect(.degrees(180))
                                             
-                                        
+                                        }
+                                        NavigationLink(destination: Login3()){
+                                            Image("Arrow")
+                                                .padding(.trailing, 20)
+                                        }
                                     }
+                                    
+                                
+                                    
                                     
                                 }
 
@@ -92,9 +87,7 @@ struct Login2: View {
                    
                 }
             }
-            .onAppear {
-                floatUpDown = true
-            }
+            
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -102,4 +95,5 @@ struct Login2: View {
 
 #Preview {
     Login2()
+        .environmentObject(PregnancyData())
 }

@@ -1,55 +1,36 @@
 import SwiftUI
 
 struct HomeBar: View {
-    @State private var tab = 0
+    @State public var tab = 0
+    @State var pregnancyDate = Date.now
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             VStack {
                 switch tab {
                 case 0:
                     Home1()
                 case 1:
-                    CalendarView()
+                    CalendarView(pregnancyDate: $pregnancyDate)
+                case 2:
+                    Scan()
+                case 3:
+                    Home1()
+                case 4:
+                    Perfil(pregnancyDate: $pregnancyDate)
                 default:
                     Home1()
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    BottomToolbar(tab: $tab) // Usando el componente de toolbar
+                }
+            }
         }
-        HStack{
-            Button() {
-                tab = 0
-            }
-            label: {
-                Image("Group (2)") // Asumir nombre de la imagen del ícono de casa
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .padding(20)
-            }
-            Button() {
-                tab = 1
-            }
-            label: {
-                Image("Group (1)") // Asumir nombre de la imagen del ícono de casa
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .padding(20)
-            }
-            Image("Group") // Asumir nombre de la imagen del ícono de libro
-                .resizable()
-                .frame(width: 30, height: 30)
-                .padding(20)
-
-            Image("Vector (6)") // Asumir nombre de la imagen del ícono de perfil
-                .resizable()
-                .frame(width: 30, height: 30)
-                .padding(20)
-        }
-        
     }
 }
 
-
-
 #Preview {
     HomeBar()
+        .environmentObject(PregnancyData())
 }

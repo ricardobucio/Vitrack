@@ -4,86 +4,55 @@ struct Login6: View {
     @State private var selectedDate = Date() // Variable para la fecha seleccionada
     @State private var showDatePicker = false // Controlar la presentación del DatePicker
     @State private var selectedCycle = 30
-    @State private var floatUpDown = false
-    
     @Environment(\.dismiss) var dismiss
-  
+    @EnvironmentObject var pregnancyData: PregnancyData
     var body: some View {
         NavigationStack{
             ZStack{
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 50, height: 50)
-                    .background(Color(red: 0.01, green: 0.71, blue: 0.02).opacity(0.3))
-                    .cornerRadius(263)
-                    .position(x:350, y:40)
-                    .offset(y: floatUpDown ? -10 : 10) // Animación de flotación
-                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: floatUpDown)
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 80, height: 80)
-                    .background(Color(red: 0.01, green: 0.70, blue: 0.86).opacity(0.3))
-                    .cornerRadius(263)
-                    .position(x:50, y:500)
-                    .offset(y: floatUpDown ? -5 : 5) // Animación de flotación
-                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floatUpDown)
+                Color(red: 0.95, green: 0.95, blue: 0.97)
+                    .ignoresSafeArea()
                 VStack(spacing: 24) {
                     // Título principal
                     Text("Ingresa el día de tu ultimo periodo para hacer los calculos necesarios")
                         .font(Font.custom("Arial", size: 24).weight(.semibold))
                         .foregroundColor(.black)
                         .frame(width: 350, height: 90, alignment: .leading)
-                        .padding(.top, 90)
-                        .padding(.leading, 50)
-                    Spacer()
+                        .padding(.leading, 30)
+                        .padding(.bottom, 40)
+                    
                     // Subtítulo
                     Text("¿Cuando fue tu última menstruación?")
                         .font(Font.custom("Arial", size: 20).weight(.semibold))
                         .foregroundColor(.black)
                         .frame(width: 350, alignment: .leading)
-                        .padding(.leading, 50)
-                        .padding(.bottom, 20)
+                        .padding(.leading, 30)
+                       
                     // Botón para seleccionar fecha
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Fecha")
-                            .font(Font.custom("Arial", size: 14))
-                            .foregroundColor(.gray)
-                            .padding(.leading, 5)
-                        Button(action: {
-                            showDatePicker.toggle() // Mostrar DatePicker
-                        }) {
-                            Text("   \(selectedDate, formatter: dateFormatter)")
-                                .font(Font.custom("Arial", size: 16))
-                                .foregroundColor(.gray)
-                                .frame(width: 300, height: 50, alignment: .leading)
-                            
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.green, lineWidth: 1.5)
-                                        .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.95))
-                                )
-                                .padding(5)
-                                
-                        }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.black.opacity(0.8))
+                            .frame(width: 300, height: 190)
+                        
+                        DatePicker("Fecha", selection: $selectedDate, displayedComponents: [.date])
+                            .datePickerStyle(.wheel)
+                            .labelsHidden()
+                            .colorInvert()
                     }
-                    .padding(.horizontal, 16)
                     HStack() {
                         Rectangle()
-                            .frame(width: 300, height: 1)
-                            .padding(.top, 30)
-                            .padding(.bottom, 30)
+                            .frame(width: 325, height: 0.4)
+                            
                     }
                     
                     // Sección de "Cuál es el periodo de tu ciclo?"
                     VStack(spacing: 8) {
                         HStack {
-                            Text("¿Cuál es el período de tu ciclo?")
-                                .font(Font.custom("Arial", size: 24).weight(.semibold))
+                            Text("¿Cuál es la duración promedio de tu ciclo?")
+                                .font(Font.custom("Arial", size: 20).weight(.semibold))
                                 .foregroundColor(.black)
-                                .frame(width: 350, alignment: .leading)
-                                .padding(.leading, 50)
-                                .padding(.bottom)
-                                .lineLimit(3)
+                                .frame(width: 320, alignment: .leading)
+                                .padding(.leading, 5)
+                                .padding(.bottom, 20)
                         }
                        
                         HStack {
@@ -92,12 +61,14 @@ struct Login6: View {
                                     selectedCycle = day
                                 }) {
                                     Text("\(day)")
+                                        .foregroundStyle(.black)
                                         .padding()
                                         .frame(width: 60, height: 60)
-                                        .background(selectedCycle == day ? Color.blue.opacity(0.2) : Color.clear)
+                                        .background(selectedCycle == day ? Color.purple.opacity(0.2) : Color.clear)
+                                        .background(.white)
                                         .cornerRadius(10)
-                                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1))
-                                        .padding(5)
+                                        
+                                        .padding(8)
                                         .padding(.bottom, 20)
                                 }
                             }
@@ -107,8 +78,9 @@ struct Login6: View {
                             }) {
                                 Image(systemName: "plus")
                                     .padding()
+                                    .foregroundStyle(.white)
                                     .frame(width: 60, height: 60)
-                                    .background(Color.blue.opacity(0.2))
+                                    .background(Color(red: 0.48, green: 0.25, blue: 0.86))
                                     .cornerRadius(50)
                                     .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.blue, lineWidth: 1))
                                     .padding(5)
@@ -125,26 +97,26 @@ struct Login6: View {
                                 Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 6, height: 6)
-                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                .background(Color(red: 0.70, green: 0.56, blue: 1))
                                 .cornerRadius(4)
                                 .padding(.leading, 20)
-                               
+                              
                                 Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 6, height: 6)
-                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                .background(Color(red: 0.70, green: 0.56, blue: 1))
                                 .cornerRadius(4)
+                              
                                 Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 6, height: 6)
-                                .background(Color(red: 1, green: 0.21, blue: 0.64).opacity(0.17))
+                                .background(Color(red: 0.70, green: 0.56, blue: 1))
                                 .cornerRadius(4)
                                 Rectangle()
                                 .foregroundColor(.clear)
                                 .frame(width: 20, height: 6)
-                                .background(Color(red: 0.70, green: 0.12, blue: 0.41))
+                                .background(.black)
                                 .cornerRadius(4)
-                               
                             }
                            
                         }
@@ -152,20 +124,19 @@ struct Login6: View {
                         ToolbarItem(placement: .bottomBar) {
                             HStack{
                                 Button() {
-                                    dismiss()
+                                        dismiss()
                                 }
                                 label: {
                                     Image("Arrow")
                                         .rotationEffect(.degrees(180))
-                                      
-                                    
                                 }
-                                NavigationLink(destination: Login7()){
+                                NavigationLink(destination: Login7(), label: {
                                     Image("Arrow")
                                         .padding(.trailing, 20)
-                                        
-                                    
-                                }
+                                })
+                                .simultaneousGesture(TapGesture().onEnded {
+                                    calculateWeeksPregnant()
+                                })
                             }
                             
                             
@@ -177,17 +148,23 @@ struct Login6: View {
 
 
             }
-            .onAppear(){
-                floatUpDown = true
-            }
+            
         }
-        
         .navigationBarBackButtonHidden(true)
-        .sheet(isPresented: $showDatePicker) {
-            DatePickerView(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
+        
+    }
+    private func calculateWeeksPregnant() {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: selectedDate, to: currentDate) // Cambié el orden aquí
+
+        if let days = components.day {
+            pregnancyData.weeksPregnant = max(0, days / 7) // Aquí solo tomamos los días transcurridos
+            pregnancyData.lastPeriodDate = selectedDate
         }
     }
-    
+
+
     // Formateador para la fecha seleccionada
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -197,46 +174,9 @@ struct Login6: View {
     }
 }
 
-struct DatePickerView: View {
-    @Binding var selectedDate: Date
-    @Binding var showDatePicker: Bool
-
-    var body: some View {
-        ZStack {
-            // Fondo oscuro semitransparente
-            Color.black.opacity(0.3)
-                .edgesIgnoringSafeArea(.all) // Ignorar los márgenes seguros
-
-            VStack {
-                Text("Selecciona una fecha")
-                    .font(.headline)
-                    .padding()
-
-                DatePicker("Fecha", selection: $selectedDate, displayedComponents: .date)
-                    .datePickerStyle(GraphicalDatePickerStyle())
-                    .padding()
-
-                Button("Aceptar") {
-                    showDatePicker = false // Cerrar el sheet
-                }
-                .padding()
-            }
-            .padding()
-            .background(
-                Color.white // Fondo blanco
-                    .cornerRadius(20) // Bordes redondeados
-                    .shadow(color: Color.black.opacity(0.2), radius: 15, x: 0, y: 5) // Sombra
-            )
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // Ocupar toda la pantalla
-            .padding() // Opcional: añade un poco de padding
-        }
-        .navigationBarItems(trailing: Button("Cerrar") {
-            showDatePicker = false // Cerrar el sheet
-        })
-    }
-}
 
 
 #Preview {
     Login6()
+        .environmentObject(PregnancyData())
 }
